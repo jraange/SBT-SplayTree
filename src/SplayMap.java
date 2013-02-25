@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: Jrange
- * Date: 26.02.13
- * Time: 0:22
- * To change this template use File | Settings | File Templates.
- */
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
