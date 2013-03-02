@@ -120,13 +120,15 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
             n.right = root;
             root.left = null;
             root = n;
-        } else if (compareValue > 0) {
+        }
+        if (compareValue > 0) {
             Node n = newNode(key, value);
             n.right = root.right;
             n.left = root;
             root.right = null;
             root = n;
-        } else if (compareValue == 0) {
+        }
+        if (compareValue == 0) {
             root.value = value;
         }
         return null;
@@ -154,7 +156,8 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
                 root.right = x;
             }
             return null;
-        } else return null;
+        }
+        return null;
 
     }
 
@@ -172,15 +175,18 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
             if (compareLeftValue < 0) {
                 h.left.left = splay(h.left.left, key);
                 h = turnRight(h);
-            } else if (compareLeftValue > 0) {
+            }
+            if (compareLeftValue > 0) {
                 h.left.right = splay(h.left.right, key);
                 if (h.left.right != null)
                     h.left = turnLeft(h.left);
             }
 
-            if (h.left == null) return h;
-            else return turnRight(h);
-        } else if (compareValue > 0) {
+            if (h.left == null)
+                return h;
+            return turnRight(h);
+        }
+        if (compareValue > 0) {
             if (h.right == null) {
                 return h;
             }
@@ -190,14 +196,17 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
                 h.right.left = splay(h.right.left, key);
                 if (h.right.left != null)
                     h.right = turnRight(h.right);
-            } else if (compareRightValue > 0) {
+            }
+            if (compareRightValue > 0) {
                 h.right.right = splay(h.right.right, key);
                 h = turnLeft(h);
             }
 
-            if (h.right == null) return h;
-            else return turnLeft(h);
-        } else return h;
+            if (h.right == null)
+                return h;
+            return turnLeft(h);
+        }
+        return h;
     }
 
     private Node turnRight(Node h) {
