@@ -17,7 +17,13 @@ public class Map_Test extends TestCase {
         st1.put(K, V);
         assertTrue(st1.get(K) == A);
     }
-
+     public void testSize(){
+         SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
+         assertTrue(st1.size()==0);
+         st1.put(1,3);
+         st1.put(2,3);
+         assertTrue(st1.size()==2);
+     }
 
     public void testRemove() {
         SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
