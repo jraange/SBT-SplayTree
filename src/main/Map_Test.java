@@ -2,7 +2,6 @@ package main;
 
 import junit.framework.TestCase;
 
-// Tests!!!
 
 public class Map_Test extends TestCase {
     public void testJust() {
@@ -15,7 +14,8 @@ public class Map_Test extends TestCase {
     public void checkJust(Integer K, Integer V, Integer A) {
         SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
         st1.put(K, V);
-        assertTrue(st1.get(K) == A);
+        int cmp = st1.get(K).compareTo(A);
+        assertTrue(cmp==0);
     }
      public void testSize(){
          SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
@@ -53,7 +53,6 @@ public class Map_Test extends TestCase {
     }
 
 
-    //Test left turn - line of decreas elements
     public void testLeft() {
         SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
         st1.put(1, 5);
@@ -65,7 +64,6 @@ public class Map_Test extends TestCase {
         assertTrue(st1.get(4) == 2);
     }
 
-    // Same for right turn
     public void testRight() {
         SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
         st1.put(1, 1);
@@ -76,7 +74,6 @@ public class Map_Test extends TestCase {
         assertTrue(st1.size() == 5);
         assertTrue(st1.get(4) == 4);
     }
-    // Ok, try to duplicate some key
 
     public void testDupl() {
         SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
@@ -85,7 +82,6 @@ public class Map_Test extends TestCase {
         assertTrue(st1.get(5) == 8);
     }
 
-    // Test duplicate value. Its may be problem for Splay tree)
     public void testDuplValue() {
         SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
         st1.put(7, 5);

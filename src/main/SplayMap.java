@@ -96,9 +96,10 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
     public V get(Object arg0) {
         K key = (K) arg0;
         root = splay(root, key);
-        int compareResult = (key).compareTo(root.key);
-        if (compareResult == 0) return root.value;
-        else return null;
+        int compareValue = (key).compareTo(root.key);
+        if (compareValue == 0)
+            return root.value;
+        return null;
     }
 
     @Override
@@ -112,22 +113,20 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
 
         root = splay(root, key);
 
-        int compereResult = key.compareTo(root.key);
-        if (compereResult < 0) {
+        int compareValue = key.compareTo(root.key);
+        if (compareValue < 0) {
             Node n = newNode(key, value);
             n.left = root.left;
             n.right = root;
             root.left = null;
             root = n;
-        } else if (compereResult > 0) {
+        } else if (compareValue > 0) {
             Node n = newNode(key, value);
             n.right = root.right;
             n.left = root;
             root.right = null;
             root = n;
-        }
-        // Way for duplicated key
-        else if (compereResult == 0) {
+        } else if (compareValue == 0) {
             root.value = value;
         }
         return null;
@@ -142,9 +141,9 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
 
         root = splay(root, key);
 
-        int compareResult = key.compareTo(root.key);
+        int compareValue = key.compareTo(root.key);
 
-        if (compareResult == 0) {
+        if (compareValue == 0) {
             --size;
             if (root.left == null) {
                 root = root.right;
@@ -159,22 +158,21 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     }
 
-    public Node splay(Node h, K key) {
-        // main operation
+    private Node splay(Node h, K key) {
         if (h == null)
             return null;
 
-        int compareResult1 = key.compareTo(h.key);
+        int compareValue = key.compareTo(h.key);
 
-        if (compareResult1 < 0) {
+        if (compareValue < 0) {
             if (h.left == null) {
                 return h;
             }
-            int compareResult2 = key.compareTo(h.left.key);
-            if (compareResult2 < 0) {
+            int compareLeftValue = key.compareTo(h.left.key);
+            if (compareLeftValue < 0) {
                 h.left.left = splay(h.left.left, key);
                 h = turnRight(h);
-            } else if (compareResult2 > 0) {
+            } else if (compareLeftValue > 0) {
                 h.left.right = splay(h.left.right, key);
                 if (h.left.right != null)
                     h.left = turnLeft(h.left);
@@ -182,17 +180,17 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
 
             if (h.left == null) return h;
             else return turnRight(h);
-        } else if (compareResult1 > 0) {
+        } else if (compareValue > 0) {
             if (h.right == null) {
                 return h;
             }
 
-            int compareResult3 = key.compareTo(h.right.key);
-            if (compareResult3 < 0) {
+            int compareRightValue = key.compareTo(h.right.key);
+            if (compareRightValue < 0) {
                 h.right.left = splay(h.right.left, key);
                 if (h.right.left != null)
                     h.right = turnRight(h.right);
-            } else if (compareResult3 > 0) {
+            } else if (compareRightValue > 0) {
                 h.right.right = splay(h.right.right, key);
                 h = turnLeft(h);
             }
@@ -203,7 +201,6 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     private Node turnRight(Node h) {
-        // Turn right:)
         Node x = h.left;
         h.left = x.right;
         x.right = h;
@@ -211,15 +208,9 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     private Node turnLeft(Node h) {
-        // Turn left:)
         Node x = h.right;
         h.right = x.left;
         x.left = h;
         return x;
     }
-
-
-    public static void main(String[] args) {
-    }
-
 }
