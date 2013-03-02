@@ -2,7 +2,7 @@ package main;
 
 import junit.framework.TestCase;
 
-// Tests!
+// Tests!!!
 
 public class Map_Test extends TestCase {
     public void testJust() {
