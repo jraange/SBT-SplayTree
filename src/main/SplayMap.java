@@ -220,10 +220,6 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
 
 
     public static void main(String[] args) {
-        SplayMap<Integer, Integer> st1 = new SplayMap<Integer, Integer>();
-        st1.put(1,2);
-        st1.remove(1);
-        System.out.println(st1.size());
 }
 
 }
