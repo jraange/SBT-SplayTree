@@ -1,4 +1,5 @@
 package main;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -218,8 +219,7 @@ public class SplayMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
 
-
     public static void main(String[] args) {
-}
+    }
 
 }
